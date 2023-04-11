@@ -1,0 +1,63 @@
+<div style="height: 100%">
+  <div class="example-container mat-elevation-z8">
+    <mat-form-field>
+      <input matInput type="search" [(ngModel)]="filterValue"
+             placeholder="Search unit by name">
+      <button  matSuffix mat-stroked-button aria-label="search"  (click)="updateTable(filterValue)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
+
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <!-- First Column ID-->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Second Column -->
+      <ng-container matColumnDef="unitName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.unitName}} </mat-cell>
+      </ng-container>
+
+      <!-- Third Column -->
+      <ng-container matColumnDef="unitHead">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Code</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div class="form-group">
+            <a target="_blank">{{element.unitHead}}  </a>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <!-- Fourth Column -->
+      <ng-container matColumnDef="prodRating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header=""> Rating</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.prodRating }} </mat-cell>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="edit"> Edit</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                  color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="delete"> Delete</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+                  color="warn" (click)="delete(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>

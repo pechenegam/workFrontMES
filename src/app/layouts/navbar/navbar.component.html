@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" data-bs-theme="dark">Navbar</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLoggedIn">
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" [href]="Urls.HELLO_PAGE">Convert</a>-->
+<!--            </li>-->
+            <li class="nav-item">
+                <a class="nav-link" [href]="Urls.TEAMS">History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [href]="Urls.ALL_HISTORY">All History</a>
+            </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+            <button mat-stroked-button color="accent" *ngIf="isLoggedIn; else logoutButton" (click)="logout()">Logout
+            </button>
+            <ng-template #logoutButton>
+                <button mat-stroked-button color="accent" (click)="login()">Sign in</button>
+            </ng-template>
+        </div>
+    </div>
+</nav>
+
