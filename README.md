@@ -9,6 +9,6 @@
   + Package Manager: npm 8.19.3
   + OS: linux x64
 ## Запуск проекта
-  1 npm install
-  2 npm start 
+  + npm install
+  + npm start 
 
