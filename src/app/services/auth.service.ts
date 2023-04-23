@@ -25,7 +25,7 @@ export class AuthService {
       .pipe(tap(jwt => this.authStorage.save(jwt)));
   }
 
-  registration(username: string, email:string, password: string): Observable<Jwt> {
+  registration(username: string, email: string, password: string): Observable<Jwt> {
     return this.httpClient.post<Jwt>(`${PATH}/sign-up`, {username, email, password})
       .pipe(tap(jwt => this.authStorage.save(jwt)));
   }
@@ -52,8 +52,6 @@ export class AuthService {
 
   hasRole(role: UserRole): boolean {
     const auth = this.authStorage.load();
-    console.log(auth.roles.includes(role));
-    console.log(auth.roles);
     return auth && auth.roles.includes(role);
   }
 

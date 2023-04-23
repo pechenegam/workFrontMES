@@ -2,13 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
-import {Team} from "../../../models/team";
 import {UserCriteria} from "../../../models/user-criteria";
 import {User} from "../../../models/user";
 import {UserService} from "../../../services/user-service";
 import {UserTableModel} from "./models/user-table-model";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {EditTeamComponent} from "../team/edit-team/edit-team.component";
 import {EditEmployeesComponent} from "./edit-employees/edit-employees.component";
 import {MatDialog} from "@angular/material/dialog";
 
@@ -21,7 +19,7 @@ export class EmployeesComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  readonly displayedColumns = ['id', 'username', 'firstName', 'secondName', 'email', 'createdDate', 'teamName', 'edit', 'delete'];
+  readonly displayedColumns = ['id', 'username', 'firstName', 'secondName', 'email', 'createdDate', 'unitName', 'edit', 'delete'];
   readonly dataSource = new MatTableDataSource<UserTableModel>();
   users: User[];
   // filterValue: string;
@@ -37,18 +35,14 @@ export class EmployeesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.userService.fetchAllUser(new UserCriteria()).subscribe(res => {
       this.users = res;
-      // this.users.forEach(user=>{
-      //   user.createdDate = user.createdDate.format('YYYY-MM-DD');
-      // });
       this.initDataSource();
-      console.log(this.users);
     });
     this.formGroupFilter = this.formBuilder.group({
-      unitName: [''],
-      username: [''],
-      firstName: [''],
-      secondName: [''],
-      email: [''],
+      unitName: [null],
+      username: [null],
+      firstName: [null],
+      secondName: [null],
+      email: [null],
     });
 
   }
@@ -67,7 +61,6 @@ export class EmployeesComponent implements OnInit {
       email: user.email,
       createdDate: user.createdDate,
       unitName: user.unitName,
-      // unitHead: user.unitHead,
     } as UserTableModel));
   }
 
@@ -87,7 +80,6 @@ export class EmployeesComponent implements OnInit {
   private reloadData() {
     this.setFilterValues();
     this.userService.fetchAllUser(this.userCriteria).subscribe(res => {
-      console.log(res);
       this.users = res;
       this.initDataSource();
     });
@@ -100,9 +92,7 @@ export class EmployeesComponent implements OnInit {
   }
 
 
-
   clearFilter() {
-    console.log('clear');
     this.clearFilterFields();
     this.reloadData();
   }
@@ -115,14 +105,8 @@ export class EmployeesComponent implements OnInit {
     return this.formGroupFilter.controls;
   }
 
-  // edit(user: User) {
-  //   this.userService.edit(user).subscribe(res => {
-  //     this.reloadData();
-  //   });
-  // }
-
   edit(userId: string) {
-    const putUser = this.users.find(user=> user.id == userId);
+    const putUser = this.users.find(user => user.id == userId);
     const dialog = this.dialog.open(EditEmployeesComponent, {
       panelClass: 'app-dialog',
       maxWidth: '500px',

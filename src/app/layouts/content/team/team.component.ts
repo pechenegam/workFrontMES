@@ -25,10 +25,10 @@ export class TeamComponent implements OnInit {
   readonly displayedColumns = ['id', 'unitName', 'unitHead'];
   readonly dataSource = new MatTableDataSource<TeamTableModel>();
   teams: Team[];
-  // filterValue: string;
   teamCriteria = new TeamCriteria();
   formGroupFilter: FormGroup;
   isAdmin = false;
+
   constructor(private teamService: TeamService,
               private formBuilder: FormBuilder,
               private dialog: MatDialog,
@@ -36,13 +36,12 @@ export class TeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setIfUserisAcmin();
+    this.setIfUsersAdmin();
     this.formGroupFilter = this.formBuilder.group({
-      unitName: [''],
-      headFirstName: [''],
-      headSecondName: ['']
+      unitName: [null],
+      headFirstName: [null],
+      headSecondName: [null]
     });
-    console.log('1');
     this.dataSource.paginator = this.paginator;
     this.teamService.fetchAllTeam(new TeamCriteria()).subscribe(res => {
       this.teams = res;
@@ -51,7 +50,7 @@ export class TeamComponent implements OnInit {
 
   }
 
-  private setIfUserisAcmin() {
+  private setIfUsersAdmin() {
     this.isAdmin = this.authService.hasRole(UserRole.ADMIN);
     if (this.isAdmin) {
       this.displayedColumns.push('edit');
@@ -83,7 +82,6 @@ export class TeamComponent implements OnInit {
   private reloadData() {
     this.setFilterValues();
     this.teamService.fetchAllTeam(this.teamCriteria).subscribe(res => {
-      console.log(res);
       this.teams = res;
       this.initDataSource();
     });

@@ -1,4 +1,4 @@
-export class TeamTableModel{
+export class TeamTableModel {
   id: string;
   unitName: string;
   unitHead: any;

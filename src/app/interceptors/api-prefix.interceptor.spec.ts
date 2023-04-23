@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ApiPrefixInterceptor } from './api-prefix.interceptor';
+import {ApiPrefixInterceptor} from './api-prefix.interceptor';
 
 describe('ApiPrefixInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       ApiPrefixInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {

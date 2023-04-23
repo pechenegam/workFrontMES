@@ -41,6 +41,7 @@ export class EditTeamComponent implements OnInit {
     }
     this.userService.fetchAllUser(new UserCriteria()).subscribe(res => {
       this.users = res;
+      this.users = this.users.filter(user => user.firstName !== null);
     });
   }
 

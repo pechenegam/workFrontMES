@@ -21,16 +21,16 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ApiPrefixInterceptor} from "./interceptors/api-prefix.interceptor";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {SecurityInterceptor} from "./interceptors/security.interceptor";
-import { HelloPageComponent } from './layouts/content/hello-page/hello-page.component';
-import { TeamComponent } from './layouts/content/team/team.component';
+import {HelloPageComponent} from './layouts/content/hello-page/hello-page.component';
+import {TeamComponent} from './layouts/content/team/team.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { EmployeesComponent } from './layouts/content/employees/employees.component';
+import {EmployeesComponent} from './layouts/content/employees/employees.component';
 import {EditTeamComponent} from "./layouts/content/team/edit-team/edit-team.component";
-import { EditEmployeesComponent } from './layouts/content/employees/edit-employees/edit-employees.component';
-import { RegistrationComponent } from './layouts/content/registration/registration.component';
+import {EditEmployeesComponent} from './layouts/content/employees/edit-employees/edit-employees.component';
+import {RegistrationComponent} from './layouts/content/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -44,29 +44,29 @@ import { RegistrationComponent } from './layouts/content/registration/registrati
     EditEmployeesComponent,
     RegistrationComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MatFormFieldModule,
-        MatCardModule,
-        NgbModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatTableModule,
-        MatTabsModule,
-        MatSortModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatTooltipModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatFormFieldModule,
+    MatCardModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatTableModule,
+    MatTabsModule,
+    MatSortModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    FormsModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

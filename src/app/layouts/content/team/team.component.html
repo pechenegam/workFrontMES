@@ -3,24 +3,15 @@
     <mat-form-field style="margin-left: 35px">
       <input matInput type="search" [formControlName]="'unitName'"
              placeholder="Название организаций">
-      <!--      <button matSuffix mat-stroked-button aria-label="search" (click)="updateTable(filterValue)">-->
-      <!--        <mat-icon>search</mat-icon>-->
-      <!--      </button>-->
     </mat-form-field>
     <mat-form-field>
       <input matInput type="search" [formControlName]="'headFirstName'"
              placeholder="Имя руководителя">
-      <!--      <button  matSuffix mat-stroked-button aria-label="search"  (click)="updateTable(filterValue)">-->
-      <!--        <mat-icon>search</mat-icon>-->
-      <!--      </button>-->
     </mat-form-field>
 
     <mat-form-field>
       <input matInput type="search" [formControlName]="'headSecondName'"
              placeholder="Фамилия руководителя">
-      <!--      <button  matSuffix mat-stroked-button aria-label="search"  (click)="updateTable(filterValue)">-->
-      <!--        <mat-icon>search</mat-icon>-->
-      <!--      </button>-->
     </mat-form-field>
     <div>
       <button align="end" matSuffix mat-stroked-button aria-label="search" (click)="updateFilter()">
@@ -39,19 +30,16 @@
   </div>
   <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort>
-      <!-- First Column ID-->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
       </ng-container>
 
-      <!-- Second Column -->
       <ng-container matColumnDef="unitName">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Название отдела</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.unitName}} </mat-cell>
       </ng-container>
 
-      <!-- Third Column -->
       <ng-container matColumnDef="unitHead">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Имя руковдителя</mat-header-cell>
         <mat-cell *matCellDef="let element">
@@ -60,12 +48,10 @@
           </div>
         </mat-cell>
       </ng-container>
-      <!-- Fourth Column -->
       <ng-container matColumnDef="prodRating">
         <mat-header-cell *matHeaderCellDef mat-sort-header=""> Rating</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.prodRating }} </mat-cell>
       </ng-container>
-      <!-- Action Column -->
       <ng-container matColumnDef="edit" *ngIf="isAdmin">
         <mat-header-cell *matHeaderCellDef mat-sort-header="edit"></mat-header-cell>
         <mat-cell *matCellDef="let element">

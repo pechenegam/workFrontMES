@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HelloPageComponent } from './hello-page.component';
+import {HelloPageComponent} from './hello-page.component';
 
 describe('HelloPageComponent', () => {
   let component: HelloPageComponent;
@@ -8,9 +8,9 @@ describe('HelloPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HelloPageComponent ]
+      declarations: [HelloPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(HelloPageComponent);
     component = fixture.componentInstance;

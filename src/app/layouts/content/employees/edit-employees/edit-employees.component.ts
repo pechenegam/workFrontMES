@@ -4,7 +4,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserService} from "../../../../services/user-service";
 import {TeamService} from "../../../../services/team-service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {UserTableModel} from "../models/user-table-model";
 import {TeamCriteria} from "../../../../models/team-criteria";
 import {Team} from "../../../../models/team";
 import {User} from "../../../../models/user";

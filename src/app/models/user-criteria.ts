@@ -1,4 +1,4 @@
-export class UserCriteria{
+export class UserCriteria {
   username: string;
   firstName: string;
   secondName: string;
