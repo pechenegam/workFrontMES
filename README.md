@@ -1,8 +1,14 @@
-# FrontApp
+# Предупреждение 
+ Не удалось запустить фронт чере docker-compose up, проблема доступа nginx, видимо не работает из за отдельности от локальной сети
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Установка необходимых компанентов
+ Необходимо установить node, Angular CLI 
+ Текущие настройки проекта 
+  + Angular CLI: 15.0.3
+  + Node: 16.19.1
+  + Package Manager: npm 8.19.3
+  + OS: linux x64
+## Запуск проекта
+  1 npm install
+  2 npm start 
 
