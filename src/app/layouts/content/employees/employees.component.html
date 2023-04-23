@@ -1,0 +1,98 @@
+<div style="height: 100%">
+    <div  class="filterFiled" [formGroup]="formGroupFilter">
+      <mat-form-field style="margin-left: 35px">
+        <input matInput type="search" [formControlName]="'username'"
+               placeholder="Имя пользователя">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="search" [formControlName]="'firstName'"
+               placeholder="Имя сотрудника">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="search" [formControlName]="'secondName'"
+               placeholder="Фамилия сотрудника">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="search" [formControlName]="'email'"
+               placeholder="Почта">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="search" [formControlName]="'unitName'"
+               placeholder="Название организаций">
+      </mat-form-field>
+      <div>
+        <button  align="end" matSuffix mat-stroked-button aria-label="search"  (click)="updateFilter()">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button  align="end" matSuffix mat-stroked-button aria-label="close"  (click)="clearFilter()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+    </div>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Имя пользователя</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Имя </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="secondName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Фамилия</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.secondName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Почта</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.email }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="createdDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Дата создания</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.createdDate |  date:'dd.MM.yyyy'}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="teamName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Название отдела</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.unitName }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="edit"></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" (click)="edit(element.id)"
+                      color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="delete"></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+                      color="warn" (click)="delete(element.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </div>

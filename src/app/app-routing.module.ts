@@ -7,6 +7,8 @@ import {UserRole} from "./models/user-role";
 import {HelloPageComponent} from "./layouts/content/hello-page/hello-page.component";
 import {AllTeamResolver} from "./resolvers/all-team.resolver";
 import {TeamComponent} from "./layouts/content/team/team.component";
+import {EmployeesComponent} from "./layouts/content/employees/employees.component";
+import {RegistrationComponent} from "./layouts/content/registration/registration.component";
 
 const routes: Routes = [
   {
@@ -14,26 +16,28 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: Urls.REG,
+    component: RegistrationComponent
+  },
+  {
     path: Urls.HELLO_PAGE,
     component: HelloPageComponent,
-    // resolve: {exchangeRates: ExchangeRatesResolver},
-    // canActivate: [AuthGuard],
-    // data: {roles: [UserRole.USER]}
+    canActivate: [AuthGuard],
+    data: {roles: [UserRole.USER, UserRole.ADMIN]}
   },
   {
     path: Urls.TEAMS,
     component: TeamComponent,
-    // resolve: {conversions: AllTeamResolver},
-    // canActivate: [AuthGuard],
-    // data: {roles: [UserRole.USER]}
+    resolve: {conversions: AllTeamResolver},
+    canActivate: [AuthGuard],
+    data: {roles: [UserRole.USER, UserRole.ADMIN]}
   },
-  // {
-  //   path: Urls.ALL_HISTORY,
-  //   component: AllHistoryComponent,
-  //   resolve: {conversions: AllUsersConversionsResolver},
-  //   // canActivate: [AuthGuard],
-  //   // data: {roles: [UserRole.USER]}
-  // },
+  {
+    path: Urls.EMPLOYEES,
+    component: EmployeesComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [UserRole.ADMIN]}
+  },
 ];
 
 @NgModule({

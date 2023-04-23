@@ -4,19 +4,19 @@
       <div class="card shadow-2-strong" [style.border-radius]="'1erm'">
         <div class="card-body p-5 text-center">
           <form [formGroup]="form">
-            <h3 class="mb-5">Sign in</h3>
+            <h3 class="mb-5">Войти</h3>
 
             <mat-form-field class="w-100">
-              <mat-label>Enter your email</mat-label>
+              <mat-label>Введите имя пользователя</mat-label>
               <input matInput formControlName="login">
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <mat-label>Password</mat-label>
+              <mat-label>Пароль</mat-label>
               <input matInput formControlName="password" type="password">
             </mat-form-field>
 
-            <button mat-stroked-button class="w-100" [disabled]="form.invalid" (click)="login()">Login</button>
+            <button mat-stroked-button class="w-100" [disabled]="form.invalid" (click)="login()">Войти</button>
           </form>
         </div>
       </div>

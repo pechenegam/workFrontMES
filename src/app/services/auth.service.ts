@@ -25,6 +25,11 @@ export class AuthService {
       .pipe(tap(jwt => this.authStorage.save(jwt)));
   }
 
+  registration(username: string, email:string, password: string): Observable<Jwt> {
+    return this.httpClient.post<Jwt>(`${PATH}/sign-up`, {username, email, password})
+      .pipe(tap(jwt => this.authStorage.save(jwt)));
+  }
+
   logout(): void {
     this.authStorage.clear();
     this.router.navigate([Urls.LOGIN]);
@@ -42,7 +47,14 @@ export class AuthService {
 
   hasRoles(roles: UserRole[]): boolean {
     const auth = this.authStorage.load();
-    return auth && roles.every(role => auth.roles.includes(role));
+    return auth && roles.some(role => auth.roles.includes(role));
+  }
+
+  hasRole(role: UserRole): boolean {
+    const auth = this.authStorage.load();
+    console.log(auth.roles.includes(role));
+    console.log(auth.roles);
+    return auth && auth.roles.includes(role);
   }
 
   private updateRefreshToken(refreshToken: RefreshToken): void {

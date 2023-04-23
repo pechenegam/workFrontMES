@@ -21,9 +21,16 @@ export class NavbarComponent {
     return this.authService.isLoggedIn();
   }
 
+  get isAdmin(): boolean {
+    return this.authService.hasRole(UserRole.ADMIN);
+  }
 
   login(): void {
     this.router.navigate([Urls.LOGIN]);
+  }
+
+  registration(): void {
+    this.router.navigate([Urls.REG]);
   }
 
   logout(): void {

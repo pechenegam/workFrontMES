@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="data; else addNew">
+    Редактировать комманду
+  </ng-container>
+  <ng-template #addNew>
+    <ng-container >
+      Добавить команду
+    </ng-container>
+  </ng-template>
+</h1>
+<form [formGroup]="formGroup">
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Название организации</mat-label>
+    <input matInput [formControlName]="'unitName'">
+    <mat-error>Обязательное поле</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Руководитель организации</mat-label>
+    <mat-select [formControlName]="'headId'">
+      <mat-option *ngFor="let user of users" [value]="user.id">
+        {{ user.firstName + ' ' + user.secondName}}
+      </mat-option>
+    </mat-select>
+    <mat-error>Обязательное поле</mat-error>
+  </mat-form-field>
+</form>
+<div mat-dialog-actions align="end">
+  <button (click)="onClose()"
+          color="warn"
+          mat-flat-button>
+    Отмена
+  </button>
+  <button (click)="onSave()"
+          mat-flat-button
+          color="primary">
+    Сохранить
+  </button>
+</div>
+
+

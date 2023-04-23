@@ -1,30 +1,59 @@
 <div style="height: 100%">
-  <div class="example-container mat-elevation-z8">
+  <div class="filterFiled" [formGroup]="formGroupFilter">
+    <mat-form-field style="margin-left: 35px">
+      <input matInput type="search" [formControlName]="'unitName'"
+             placeholder="Название организаций">
+      <!--      <button matSuffix mat-stroked-button aria-label="search" (click)="updateTable(filterValue)">-->
+      <!--        <mat-icon>search</mat-icon>-->
+      <!--      </button>-->
+    </mat-form-field>
     <mat-form-field>
-      <input matInput type="search" [(ngModel)]="filterValue"
-             placeholder="Search unit by name">
-      <button  matSuffix mat-stroked-button aria-label="search"  (click)="updateTable(filterValue)">
-        <mat-icon>search</mat-icon>
-      </button>
+      <input matInput type="search" [formControlName]="'headFirstName'"
+             placeholder="Имя руководителя">
+      <!--      <button  matSuffix mat-stroked-button aria-label="search"  (click)="updateTable(filterValue)">-->
+      <!--        <mat-icon>search</mat-icon>-->
+      <!--      </button>-->
     </mat-form-field>
 
-
+    <mat-form-field>
+      <input matInput type="search" [formControlName]="'headSecondName'"
+             placeholder="Фамилия руководителя">
+      <!--      <button  matSuffix mat-stroked-button aria-label="search"  (click)="updateTable(filterValue)">-->
+      <!--        <mat-icon>search</mat-icon>-->
+      <!--      </button>-->
+    </mat-form-field>
+    <div>
+      <button align="end" matSuffix mat-stroked-button aria-label="search" (click)="updateFilter()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button align="end" matSuffix mat-stroked-button aria-label="close" (click)="clearFilter()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end" *ngIf="isAdmin">
+    <button mat-flat-button align="start" (click)="addNew();"
+            color="primary">
+      Добавить организацию
+    </button>
+  </div>
+  <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort>
       <!-- First Column ID-->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
       </ng-container>
 
       <!-- Second Column -->
       <ng-container matColumnDef="unitName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Название отдела</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.unitName}} </mat-cell>
       </ng-container>
 
       <!-- Third Column -->
       <ng-container matColumnDef="unitHead">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Code</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Имя руковдителя</mat-header-cell>
         <mat-cell *matCellDef="let element">
           <div class="form-group">
             <a target="_blank">{{element.unitHead}}  </a>
@@ -37,17 +66,17 @@
         <mat-cell *matCellDef="let element"> {{element.prodRating }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
-      <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef mat-sort-header="edit"> Edit</mat-header-cell>
+      <ng-container matColumnDef="edit" *ngIf="isAdmin">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="edit"></mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+          <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" (click)="edit(element);"
                   color="primary">
             <mat-icon>edit</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef mat-sort-header="delete"> Delete</mat-header-cell>
+      <ng-container matColumnDef="delete" *ngIf="isAdmin">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="delete"></mat-header-cell>
         <mat-cell *matCellDef="let element">
           <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
                   color="warn" (click)="delete(element.id)">

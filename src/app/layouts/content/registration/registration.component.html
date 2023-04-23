@@ -1,0 +1,42 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card shadow-2-strong" [style.border-radius]="'1erm'">
+        <div class="card-body p-5 text-center">
+          <form [formGroup]="form">
+            <h3 class="mb-5">Регистрация</h3>
+
+            <mat-form-field class="w-100">
+              <mat-label>Введите имя пользователя</mat-label>
+              <input matInput formControlName="login">
+              <mat-error *ngIf="form.controls['email'].hasError('required')">
+                Обязательное поле
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <mat-label>Введите почту</mat-label>
+              <input matInput formControlName="email">
+              <mat-error *ngIf="form.controls['email'].hasError('required')">
+                Обязательное поле
+              </mat-error>
+              <mat-error *ngIf="form.controls['email'].hasError('email')">
+                Неправильный формат почты
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <mat-label>Пароль</mat-label>
+              <input matInput formControlName="password" type="password">
+              <mat-error *ngIf="form.controls['email'].hasError('required')">
+                Обязательное поле
+              </mat-error>
+            </mat-form-field>
+
+            <button mat-stroked-button class="w-100" [disabled]="form.invalid" (click)="registration()">Зарегистрироваться</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

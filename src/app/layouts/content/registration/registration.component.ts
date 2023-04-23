@@ -1,19 +1,20 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import { Urls } from 'src/app/utils/urls';
+import {Urls} from "../../../utils/urls";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class LoginComponent {
+export class RegistrationComponent {
 
   form = this.formBuilder.group({
     login: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
 
@@ -23,13 +24,13 @@ export class LoginComponent {
               private snackBar: MatSnackBar) {
   }
 
-  login(): void {
-    this.authService.login(this.form.value.login, this.form.value.password)
+  registration(): void {
+    this.authService.registration(this.form.value.login, this.form.value.email, this.form.value.password)
       .subscribe(() => this.navigateToMain(), () => this.alertWongCredentials());
   }
 
   private alertWongCredentials() {
-    return this.snackBar.open('Лолгин или пароль неправильные!', '', {duration: 1000});
+    return this.snackBar.open('Имя или почта уже заняты!', '', {duration: 1000});
   }
 
   private navigateToMain() {

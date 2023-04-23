@@ -9,14 +9,14 @@ const AUTH = 'auth';
 export class AuthStorageService {
 
   save(auth: Jwt): void {
-    sessionStorage.setItem(AUTH, JSON.stringify(auth));
+    localStorage.setItem(AUTH, JSON.stringify(auth));
   }
 
   load(): Jwt {
-    return JSON.parse(sessionStorage.getItem(AUTH)) as Jwt;
+    return JSON.parse(localStorage.getItem(AUTH)) as Jwt;
   }
 
   clear(): void {
-    sessionStorage.removeItem(AUTH);
+    localStorage.removeItem(AUTH);
   }
 }

@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>
+  <ng-container>
+    Редактировать пользователя
+  </ng-container>
+</h1>
+<form [formGroup]="formGroup">
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Имя</mat-label>
+    <input matInput [formControlName]="'firstName'">
+    <mat-error>Обязательное поле</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Фамилия</mat-label>
+    <input matInput [formControlName]="'secondName'">
+    <mat-error>Обязательное поле</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Почта</mat-label>
+    <input matInput [formControlName]="'email'">
+    <mat-error *ngIf="formControls['email'].hasError('required')">
+      Обязательное поле
+    </mat-error>
+    <mat-error *ngIf="formControls['email'].hasError('email')">
+      Неправильный формат почты
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Организация</mat-label>
+    <mat-select [formControlName]="'teamId'">
+      <mat-option *ngFor="let team of teams" [value]="team.id">
+        {{ team.unitName }}
+      </mat-option>
+    </mat-select>
+    <mat-error>Обязательное поле</mat-error>
+  </mat-form-field>
+
+</form>
+<div mat-dialog-actions align="end">
+  <button (click)="onClose()"
+          color="warn"
+          mat-flat-button>
+    Отмена
+  </button>
+  <button (click)="onSave()"
+          mat-flat-button
+          color="primary">
+    Сохранить
+  </button>
+</div>
+
+

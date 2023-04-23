@@ -27,6 +27,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { EmployeesComponent } from './layouts/content/employees/employees.component';
+import {EditTeamComponent} from "./layouts/content/team/edit-team/edit-team.component";
+import { EditEmployeesComponent } from './layouts/content/employees/edit-employees/edit-employees.component';
+import { RegistrationComponent } from './layouts/content/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,10 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     LoginComponent,
     HelloPageComponent,
     TeamComponent,
+    EditTeamComponent,
+    EmployeesComponent,
+    EditEmployeesComponent,
+    RegistrationComponent,
   ],
     imports: [
         BrowserModule,

@@ -26,6 +26,11 @@ export class SecurityInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse && !request.url.includes(Urls.LOGIN) && error.status === 401) {
           return this.handle401Error(request, next);
         }
+        if (error instanceof HttpErrorResponse && request.url.includes("sign-up") && error.status === 404) {
+          this.router.navigate([Urls.REG]);
+          return throwError(() => error);
+        }
+
         this.router.navigate([Urls.LOGIN]);
         return throwError(() => error);
       })
